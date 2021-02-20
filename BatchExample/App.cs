@@ -111,8 +111,5 @@ namespace RedisBatch
 
             base._logger.LogWarning($"{name} total cost : {sw.ElapsedMilliseconds}");
         }
-
-
-
     }
 }
