@@ -150,8 +150,22 @@ namespace RedisString
             // 15. 取得Key Expire
             var strExpire = this._cache.StringGetWithExpiry($"{stringKey}Expire");
 
+            this._cache.KeyDelete($"{stringKey}Number1");
+            this._cache.KeyDelete($"{stringKey}Number2");
+            this._cache.KeyDelete($"{stringKey}Number3");
+            this._cache.StringSet($"{stringKey}Number3", "0");
+
+            var number1 = this._cache.StringIncrement($"{stringKey}Number1");
+            number1 = this._cache.StringDecrement($"{stringKey}Number1");
+
+            var number2 = this._cache.StringIncrement($"{stringKey}Number2", 2.20); // 會溢位
+            number2 = this._cache.StringDecrement($"{stringKey}Number2", 1.10);
+
+            var number3 = this._cache.StringIncrement($"{stringKey}Number3", 2.2d);
+            number3 = this._cache.StringDecrement($"{stringKey}Number3", 1.1d);
+
             // ==================================================================================================
-            // 1. 
+            // 1. String Batch 
             var bactch = this._cache.CreateBatch();
             var data = Enumerable.Range(1, 10)
                 .Select(x => new KeyValuePair<RedisKey, RedisValue>($"stringKeyBatch{x}", $"stringKeyBatch{x}"));
