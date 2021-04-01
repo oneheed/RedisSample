@@ -86,6 +86,20 @@ namespace RedisKeySample
                 this._cache.StringSet("oldKey", "oldKey");
                 return this._cache.KeyRename("oldKey", "newKey");
             }, "renameKey: {result}");
+
+            // 9. TTL key
+            ExcuteRedis(() =>
+            {
+                this._cache.StringSet("TTLKwy", "TTLKwy", new TimeSpan(0, 0, 60));
+                return this._cache.KeyTimeToLive("TTLKwy");
+            }, "Time To Live: {result}");
+
+            // 10. TYPE key
+            ExcuteRedis(() =>
+            {
+                this._cache.StringSet("TYPEKwy", "TYPEKwy");
+                return this._cache.KeyType("TYPEKwy");
+            }, "Redis key type: {result}");
         }
 
         private TResult ExcuteRedis<TResult>(Func<TResult> fun, string logTemplate = "")
