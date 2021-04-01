@@ -15,7 +15,7 @@ namespace RedisString
         public App(
             ILoggerFactory factory,
             IHostApplicationLifetime appLifetime,
-            IConnectionMultiplexer connection) : base(factory.CreateLogger<App>(), appLifetime, connection)
+            IConnectionMultiplexer connection) : base(factory.CreateLogger<App>(), appLifetime, connection, (int)RedisType.String)
         {
         }
 
@@ -178,9 +178,9 @@ namespace RedisString
 
             bactch.Execute();
 
-            var test1 = await Task.WhenAll(deleteTasks);
-            var test2 = await Task.WhenAll(setTasks);
-            var test3 = await Task.WhenAll(expireTasks);
+            var deleteResults = await Task.WhenAll(deleteTasks);
+            var setResult = await Task.WhenAll(setTasks);
+            var expireResult = await Task.WhenAll(expireTasks);
 
             //return Task.CompletedTask;
         }

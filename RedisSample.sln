@@ -5,11 +5,13 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedisSample", "RedisSample\RedisSample.csproj", "{7A9CEC22-5095-4C23-9876-668AC064A845}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisBatch", "BatchExample\RedisBatch.csproj", "{6733B822-E7D2-4C80-8E41-A5273B219B45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedisBatch", "BatchExample\RedisBatch.csproj", "{6733B822-E7D2-4C80-8E41-A5273B219B45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redis.Core", "Redis.Core\Redis.Core.csproj", "{1C62464A-C41B-42C7-A4B2-DE8BBA2A14B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redis.Core", "Redis.Core\Redis.Core.csproj", "{1C62464A-C41B-42C7-A4B2-DE8BBA2A14B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisString", "RedisString\RedisString.csproj", "{46D0C597-6374-4DB1-BF7F-EA1CF8F8ACD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedisString", "RedisString\RedisString.csproj", "{46D0C597-6374-4DB1-BF7F-EA1CF8F8ACD6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisKeySample", "RedisKey\RedisKeySample.csproj", "{7185780C-7D11-4EE9-A3EC-922D9A07CC07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{46D0C597-6374-4DB1-BF7F-EA1CF8F8ACD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46D0C597-6374-4DB1-BF7F-EA1CF8F8ACD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46D0C597-6374-4DB1-BF7F-EA1CF8F8ACD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7185780C-7D11-4EE9-A3EC-922D9A07CC07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7185780C-7D11-4EE9-A3EC-922D9A07CC07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7185780C-7D11-4EE9-A3EC-922D9A07CC07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7185780C-7D11-4EE9-A3EC-922D9A07CC07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
