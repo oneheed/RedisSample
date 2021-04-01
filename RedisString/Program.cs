@@ -11,7 +11,7 @@ namespace RedisString
 
         static void Main(string[] args)
         {
-            Redis.Core.HostBuilder.CreateHostBuilder(args, RedisCreateType.ConnectionMultiplexer, AddHostedService)
+            Redis.Core.HostBuilder.CreateHostBuilder(args, CreateType.ConnectionMultiplexer, AddHostedService)
                 .RunConsoleAsync();
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace Redis.Core
 {
-    public enum RedisCreateType
+    public enum CreateType
     {
         StackExchange,
         ConnectionMultiplexer

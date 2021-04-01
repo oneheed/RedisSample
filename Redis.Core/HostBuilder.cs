@@ -7,7 +7,7 @@ namespace Redis.Core
 {
     public static class HostBuilder
     {
-        public static IHostBuilder CreateHostBuilder(string[] args, RedisCreateType type, Func<IServiceCollection, IServiceCollection> fun) =>
+        public static IHostBuilder CreateHostBuilder(string[] args, CreateType type, Func<IServiceCollection, IServiceCollection> fun) =>
             Host.CreateDefaultBuilder(args)
                 //.ConfigureLogging(logging =>
                 //{
@@ -17,7 +17,7 @@ namespace Redis.Core
                 {
                     switch (type)
                     {
-                        case RedisCreateType.StackExchange:
+                        case CreateType.StackExchange:
                             // Use Stack Exchange
                             services.AddStackExchangeRedisCache(options =>
                             {
@@ -27,7 +27,7 @@ namespace Redis.Core
 
                             break;
 
-                        case RedisCreateType.ConnectionMultiplexer:
+                        case CreateType.ConnectionMultiplexer:
                             // User Connection Multiplexer
                             services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(
                                 new ConfigurationOptions
