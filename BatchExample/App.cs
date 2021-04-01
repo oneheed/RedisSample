@@ -24,7 +24,7 @@ namespace RedisBatch
 
         private static Stopwatch sw = new Stopwatch();
 
-        public override Task ExcuteFunc(CancellationToken cancellationToken)
+        public override async Task ExcuteFunc(CancellationToken cancellationToken)
         {
             CleaUpData();
 
@@ -32,17 +32,17 @@ namespace RedisBatch
             var data = Enumerable.Range(0, 1000).Select(x => x.ToString().PadLeft(6, '0'));
 
             StopwatchEvent(InsertBy_ListRightPush, data);
-            StopwatchEvent(InsertBy_CreateBatch, data);
+            await StopwatchEventAsync(InsertBy_CreateBatchAsync, data);
             StopwatchEvent(InsertBy_LuaScript, data);
             StopwatchEvent(InsertBy_FireAndForget, data);
 
-            return Task.CompletedTask;
+            //return Task.CompletedTask;
         }
 
         private void CleaUpData()
         {
             base._cache.KeyDelete(nameof(InsertBy_ListRightPush));
-            base._cache.KeyDelete(nameof(InsertBy_CreateBatch));
+            base._cache.KeyDelete(nameof(InsertBy_CreateBatchAsync));
             base._cache.KeyDelete(nameof(InsertBy_LuaScript));
             base._cache.KeyDelete(nameof(InsertBy_FireAndForget));
         }
@@ -53,6 +53,16 @@ namespace RedisBatch
             sw.Start();
 
             func(input);
+
+            sw.Stop();
+        }
+
+        private async Task StopwatchEventAsync(Func<IEnumerable<string>, Task> func, IEnumerable<string> input)
+        {
+            sw.Reset();
+            sw.Start();
+
+            await func(input);
 
             sw.Stop();
         }
@@ -69,7 +79,7 @@ namespace RedisBatch
             base._logger.LogWarning($"{name} total cost : {sw.ElapsedMilliseconds}");
         }
 
-        private void InsertBy_CreateBatch(IEnumerable<string> input)
+        private async Task InsertBy_CreateBatchAsync(IEnumerable<string> input)
         {
             var name = MethodBase.GetCurrentMethod().Name;
             var batch = base._cache.CreateBatch();
@@ -79,7 +89,7 @@ namespace RedisBatch
 
             batch.Execute();
 
-            Task.WhenAll(tasks);
+            await Task.WhenAll(tasks);
 
             base._logger.LogWarning($"{name} total cost : {sw.ElapsedMilliseconds}");
         }
