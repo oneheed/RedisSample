@@ -27,7 +27,7 @@ namespace Redis.Core
         {
             try
             {
-                _logger.LogWarning("APP running at: {time}", DateTimeOffset.Now);
+                _logger.LogInformation("APP running at: {time}", DateTimeOffset.Now);
 
                 await ExcuteFunc(cancellationToken);
 
@@ -46,7 +46,7 @@ namespace Redis.Core
 
         public Task StopAsync(CancellationToken cancellationToken)
         {
-            _logger.LogWarning("App stopped at: {time}", DateTimeOffset.Now);
+            _logger.LogInformation("App stopped at: {time}", DateTimeOffset.Now);
 
             Environment.ExitCode = _exitCode.GetValueOrDefault(-1);
 
